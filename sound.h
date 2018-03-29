@@ -1,3 +1,4 @@
+//#define DEBUG		//conditional compiling
 #define SAMPLERATE 16000
 
 typedef struct{
@@ -8,11 +9,11 @@ typedef struct{
 	unsigned int subchunk1Size;
 	unsigned short audioFormat;
 	unsigned short numChannels;
-	unsigned short sampleRate;
+	unsigned int sampleRate;
 	unsigned int byteRate;
 	unsigned short blockAlign;
 	unsigned short bitsPerSample;
-	char subChunk2ID[4];
+	char subchunk2ID[4];
 	unsigned int subchunk2Size;
 }WAVHeader;
 void dispWAVHeader(char filename[]);
