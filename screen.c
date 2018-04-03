@@ -31,6 +31,9 @@ void dispBar(int col, double dB) {
 #ifndef UNICODE		// if unicode is not enabled
 		printf("%c", '*');
 #else
+		if(i < 50/3) setColor(WHITE);
+		else if(i < 70/3) setColor(YELLOW);
+		else setColor(RED);
 		printf("%s", BAR);
 #endif
 	}
