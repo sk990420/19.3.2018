@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "comm.h"
 #include "screen.h"
 #include <stdio.h>
 #include <math.h>
@@ -9,6 +10,10 @@ void printID(char id[]) {
 
 	printf("\n");
 }
+/*
+ This function uses VT100 escape sequence to show the value when you try to make sound to microphone
+ and some error message when there is something wrong with "fp"
+*/
 void dispWAVData(char filename[]) {
 	int i,j;	//loop counters
 	FILE *fp;	//file handler to open the file "test.wav"
@@ -35,9 +40,15 @@ void dispWAVData(char filename[]) {
 		dispBar(i, 20*log10(rms[i]));
 #endif
 	}
+#ifdef COMM		// send data to "sound_log.txt"
+	sendToServer(rms);
+#endif
 }
 
-
+/*
+ This function uses VT100 escape sequence to open the file
+ and show some error messages when open the file faily
+*/
 void dispWAVHeader(char filename[]){
 	FILE *fp;
 	WAVHeader mh;
